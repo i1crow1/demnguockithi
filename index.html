@@ -1,1 +1,278 @@
-hi
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trang web đếm ngược ngày thi tốt nghiệp THPT dành cho học sinh THPT">
+    <title>Đếm ngược ngày thi tốt nghiệp THPT 2025</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="body" class="initial-background">
+    <!-- Initial Youth Background Elements -->
+    <div class="youth-background" id="youthBackground">
+        <!-- Train -->
+        <div class="train-container">
+            <div class="train">
+                <div class="train-engine">
+                    <div class="train-engine-details"></div>
+                    <div class="train-wheels"></div>
+                </div>
+                <div class="train-car">
+                    <div class="train-car-windows"></div>
+                    <div class="train-car-doors"></div>
+                    <div class="train-wheels"></div>
+                </div>
+                <div class="train-car">
+                    <div class="train-car-windows"></div>
+                    <div class="train-car-doors"></div>
+                    <div class="train-wheels"></div>
+                </div>
+                <div class="train-car">
+                    <div class="train-car-windows"></div>
+                    <div class="train-car-doors"></div>
+                    <div class="train-wheels"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Railway Track -->
+        <div class="railway-track"></div>
+        
+        <!-- Flying Whales -->
+        <div class="whale-container whale-1" style="top: 20%;">
+            <div class="whale">🐋</div>
+        </div>
+        <div class="whale-container whale-2" style="top: 60%;">
+            <div class="whale">🐳</div>
+        </div>
+        
+        <!-- Paper Planes -->
+        <div class="paper-plane plane-1" style="top: 25%;">✈️</div>
+        <div class="paper-plane plane-2" style="top: 45%;">🛩️</div>
+        <div class="paper-plane plane-3" style="top: 35%;">📄</div>
+        
+        <!-- Floating Books -->
+        <div class="floating-book book-1" style="top: 30%; left: 15%;">📚</div>
+        <div class="floating-book book-2" style="top: 50%; left: 70%;">📖</div>
+        <div class="floating-book book-3" style="top: 40%; left: 45%;">📝</div>
+        <div class="floating-book book-4" style="top: 65%; left: 25%;">✏️</div>
+        <div class="floating-book book-5" style="top: 25%; left: 80%;">🎓</div>
+        
+        <!-- Shooting Stars -->
+        <div class="shooting-star star-1" style="top: 10%; left: 20%;"></div>
+        <div class="shooting-star star-2" style="top: 15%; left: 60%;"></div>
+        <div class="shooting-star star-3" style="top: 25%; left: 80%;"></div>
+        <div class="shooting-star star-4" style="top: 35%; left: 30%;"></div>
+        <div class="shooting-star star-5" style="top: 45%; left: 70%;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <button class="nav-btn active" onclick="showSection('exam')">🎯 Đếm Ngược</button>
+        <button class="nav-btn" onclick="showSection('study')">⏰ Học Tập</button>
+        <button class="nav-btn" onclick="toggleBackground()">🎨 Đổi Nền</button>
+    </div>
+
+    <!-- Music Control -->
+    <div class="music-control">
+        <button class="music-btn" onclick="toggleMusic()" id="musicToggle">🎵</button>
+        <button class="music-btn" onclick="nextSong()" title="Bài tiếp theo">⏭️</button>
+        <input type="range" class="volume-control" min="0" max="100" value="30" onchange="setVolume(this.value)">
+        <span id="currentSong">♪</span>
+    </div>
+
+    <!-- Background Elements -->
+    <div class="stars" id="stars"></div>
+    <div class="floating-shapes" id="shapes"></div>
+
+    <!-- In-page Notification -->
+    <div class="notification-overlay" id="notificationOverlay">
+        <div class="notification-card">
+            <div class="notification-icon" id="notificationIcon">🎉</div>
+            <div class="notification-title" id="notificationTitle">Hoàn thành xuất sắc!</div>
+            <div class="notification-message" id="notificationMessage">
+                Bạn vừa hoàn thành một phiên học tập tuyệt vời!
+            </div>
+            <div class="notification-stats" id="notificationStats">
+                <div>⏱️ Thời gian: <span id="completedTime">25 phút</span></div>
+                <div>📚 Phiên học hôm nay: <span id="sessionCount">1</span></div>
+                <div>🔥 Tổng thời gian: <span id="totalTime">25 phút</span></div>
+            </div>
+            <div>
+                <button class="notification-continue" onclick="continueStudying()">🔄 Tiếp tục học</button>
+                <button class="notification-close" onclick="closeNotification()">✅ Hoàn thành</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <!-- Exam Countdown Section -->
+            <div id="examSection" class="section exam-section">
+                <h1 class="title">Đếm Ngược Thi THPT</h1>
+                <p class="subtitle">Kỳ Thi Tốt Nghiệp THPT Quốc Gia 2025</p>
+                
+                <div class="countdown" id="countdown">
+                    <div class="time-unit">
+                        <span class="time-value" id="days">0</span>
+                        <span class="time-label">Ngày</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="hours">0</span>
+                        <span class="time-label">Giờ</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="minutes">0</span>
+                        <span class="time-label">Phút</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="seconds">0</span>
+                        <span class="time-label">Giây</span>
+                    </div>
+                </div>
+
+                <div class="motivation-quote" id="motivationQuote">
+                    "Thành công là kết quả của sự chuẩn bị, chăm chỉ và học hỏi từ thất bại!"
+                </div>
+            </div>
+
+            <!-- Study Timer Section -->
+            <div id="studySection" class="section study-section" style="display: none;">
+                <h2 class="title">⏰ Thời Gian Học Tập</h2>
+                
+                <div class="timer-controls">
+                    <div class="time-preset active" onclick="setPresetTime(25, 0)">Pomodoro (25p)</div>
+                    <div class="time-preset" onclick="setPresetTime(45, 0)">Học Sâu (45p)</div>
+                    <div class="time-preset" onclick="setPresetTime(90, 0)">Tập Trung (90p)</div>
+                    <div class="time-preset" onclick="setPresetTime(15, 0)">Ôn Nhanh (15p)</div>
+                </div>
+
+                <div class="custom-time">
+                    <span>Tùy chỉnh:</span>
+                    <input type="number" class="time-input" id="customMinutes" min="1" max="180" value="25" placeholder="Phút">
+                    <span>phút</span>
+                    <input type="number" class="time-input" id="customSeconds" min="0" max="59" value="0" placeholder="Giây">
+                    <span>giây</span>
+                    <button class="time-preset" onclick="setCustomTime()">Đặt</button>
+                </div>
+
+                <div class="timer-display" id="timerDisplay">25:00</div>
+
+                <div class="timer-buttons">
+                    <button class="timer-btn start-btn" onclick="startTimer()">▶️ Bắt Đầu</button>
+                    <button class="timer-btn pause-btn" onclick="pauseTimer()">⏸️ Tạm Dừng</button>
+                    <button class="timer-btn reset-btn" onclick="resetTimer()">🔄 Reset</button>
+                </div>
+
+                <!-- Study Methods -->
+                <div class="study-methods">
+                    <h3 style="color: white; margin-bottom: 15px; text-align: center;">📚 Phương Pháp Học Tập</h3>
+                    
+                    <div class="method-tabs">
+                        <div class="method-tab active" onclick="showMethod('pomodoro')">Pomodoro</div>
+                        <div class="method-tab" onclick="showMethod('feynman')">Feynman</div>
+                        <div class="method-tab" onclick="showMethod('spaced')">Spaced Repetition</div>
+                        <div class="method-tab" onclick="showMethod('active')">Active Recall</div>
+                    </div>
+
+                    <div id="pomodoro" class="method-content active">
+                        <div class="method-title">🍅 Kỹ Thuật Pomodoro</div>
+                        <div class="method-description">
+                            Học trong 25 phút tập trung cao độ, nghỉ 5 phút. Sau 4 chu kỳ, nghỉ dài 15-30 phút.
+                        </div>
+                        <div class="subject-tips">
+                            <div class="subject-tip">
+                                <div class="subject-name">📐 Toán:</div>
+                                Giải bài tập liên tục, tập trung vào dạng bài khó
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">🧪 Lý/Hóa:</div>
+                                Làm thí nghiệm ảo, giải bài tập tính toán
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">📖 Văn/Sử/Địa:</div>
+                                Đọc hiểu, ghi chú tóm tắt, làm bài tập trắc nghiệm
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="feynman" class="method-content">
+                        <div class="method-title">🎯 Kỹ Thuật Feynman</div>
+                        <div class="method-description">
+                            Giải thích kiến thức bằng ngôn ngữ đơn giản như thể đang dạy cho trẻ em.
+                        </div>
+                        <div class="subject-tips">
+                            <div class="subject-tip">
+                                <div class="subject-name">📐 Toán:</div>
+                                Giải thích công thức và cách giải từng bước một cách đơn giản
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">🧪 Lý/Hóa:</div>
+                                Mô phỏng hiện tượng, giải thích nguyên lý bằng ví dụ thực tế
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">📖 Văn/Sử/Địa:</div>
+                                Kể lại nội dung như một câu chuyện, tóm tắt ý chính
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="spaced" class="method-content">
+                        <div class="method-title">📅 Spaced Repetition</div>
+                        <div class="method-description">
+                            Ôn tập theo chu kỳ: 1 ngày, 3 ngày, 1 tuần, 2 tuần, 1 tháng để ghi nhớ lâu dài.
+                        </div>
+                        <div class="subject-tips">
+                            <div class="subject-tip">
+                                <div class="subject-name">📐 Toán:</div>
+                                Ôn lại công thức và dạng bài theo lịch trình cố định
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">🧪 Lý/Hóa:</div>
+                                Ôn lại phương trình, định luật, bảng tuần hoàn
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">📖 Văn/Sử/Địa:</div>
+                                Ôn lại kiến thức cơ bản, niên đại, địa danh quan trọng
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="active" class="method-content">
+                        <div class="method-title">🧠 Active Recall</div>
+                        <div class="method-description">
+                            Tự kiểm tra kiến thức mà không nhìn tài liệu, tạo câu hỏi và tự trả lời.
+                        </div>
+                        <div class="subject-tips">
+                            <div class="subject-tip">
+                                <div class="subject-name">📐 Toán:</div>
+                                Che đáp án, tự giải bài tập rồi mới kiểm tra
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">🧪 Lý/Hóa:</div>
+                                Tự viết công thức, giải thích hiện tượng không nhìn sách
+                            </div>
+                            <div class="subject-tip">
+                                <div class="subject-name">📖 Văn/Sử/Địa:</div>
+                                Tự tóm tắt bài học, làm bài tập trắc nghiệm
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="section progress-section">
+                <h3 style="color: white; margin-bottom: 15px;">📊 Tiến Độ Đến Kỳ Thi</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p style="color: white; opacity: 0.9;" id="progressText">Đang tính toán...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
